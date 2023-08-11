@@ -9,6 +9,7 @@ import app from '../app.js';
 import debug from 'debug';
 //var http = require('http');
 import http from 'http';
+import {connect} from 'mongoose';
 
 /**Get port from environment and store in Express.*/
 
@@ -19,8 +20,13 @@ app.set('port', port);
 /**Create HTTP server.*/
 //START SERVING
 let server = http.createServer(app); // crea un servidor normalizado con http
-
-let ready = ()=> console.log('server ready on port '+port);
+let ready = ()=> {
+  console.log('server ready on port '+port);
+  //connect('link de conexion de mongo')
+  connect(process.env.LINK_DB) ///El metodo connect devuelve una promesa: se puede trabajar con then-catch
+    .then(()=>console.log('database connected'))
+    .catch(err=>console.log(err))
+}
 server.listen(port,ready);
 /**Listen on provided port, on all network interfaces.*/
 server.on('error', onError);
