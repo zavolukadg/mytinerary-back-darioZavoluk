@@ -13,7 +13,7 @@ let schema = new Schema({
     smalldescription: {type:String,default:"Edit Later"}, 
     featuredLocation:{type:String,default:"Edit Later"},
     admin_id:{type:Types.ObjectId,required:true,ref:'users'}  
-})
+},)
 
 let City = model(collection,schema);
 export default City;

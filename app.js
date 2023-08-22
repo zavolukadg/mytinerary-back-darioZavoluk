@@ -1,6 +1,5 @@
 //IMPORTS
 import 'dotenv/config.js'; // importa unicamente la configuracion de las variables de entorno
-
 import __dirname from './utils.js';  //importo la configuracion de la ubicacion del servidor
 
 //var createError = require('http-errors');
@@ -17,6 +16,9 @@ import logger from 'morgan'
 //este enrutador va a llamar a todos los otros recursos (cities, itineraries, users)
 //var usersRouter = require('./routes/users');
 import indexRouter from './routes/index.js';
+import notFoundHandler from './middlewares/notFoundHandler.js'
+import errorHandler from './middlewares/errorHandler.js'
+import cors from 'cors'
 
 var app = express(); //ejecutando este modulo de express CREO UNA APP DE BACKEN(SERVIDOR)
 
@@ -30,6 +32,7 @@ app.use(logger('dev'));   //Obligo al servidor a registrar una peticion con el m
 app.use(express.json());  //obligo al servidor a manipular/leer json
 app.use(express.urlencoded({ extended: false })); //obligo al servidor a leer params/queries
 //app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public'))); //obligo al servidor a usar los archivos estaticos de la carpeta public
 
 //ROUTER
@@ -37,12 +40,18 @@ app.use('/api', indexRouter);  //Obligo al servidor a que use las rutas del enru
 //app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.use(notFoundHandler);
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(errorHandler);
+
+
+/* app.use(function(req, res, next) {
+  next(createError(404));
+}); */
+
+// error handler
+/* app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -50,7 +59,8 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
+}); */
 
 //module.exports = app;
+
 export default app
