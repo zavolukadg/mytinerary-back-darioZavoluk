@@ -5,12 +5,12 @@ import readOne from '../controllers/activities/readOne.js'
 import update from '../controllers/activities/update.js'
 import destroy from '../controllers/activities/destroy.js'
 
-let router = express.Router();
+let activityRouter = express.Router();
 
-router.post('/', create)
-router.get('/', read)
-router.get('/:id', readOne) 
-router.put('/:u_id', update)
-router.delete('/:id', destroy)
+activityRouter.post('/', create)
+activityRouter.get('/', read)
+activityRouter.get('/:id', readOne) 
+activityRouter.put('/:u_id', update)
+activityRouter.delete('/:id', destroy)
 
-export default router;
+export default activityRouter;

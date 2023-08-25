@@ -6,7 +6,7 @@ export default async(req,res,next) =>{
         .find({},'photo city')
         .sort({fundation:'desc'}) //tambien se podria usar fundation:-1
         .limit(12)
-        let count = await City.countDocuments()
+        let count = await City.countDocuments() ///Utilizado para obtener la cantidad de documentos que devuelve
         return res.status(200).json({
             success: true,
             message:'cities to show on carousel',

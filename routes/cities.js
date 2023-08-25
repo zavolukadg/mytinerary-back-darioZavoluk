@@ -11,7 +11,6 @@ let router = express.Router();
 router.post('/', create)
 router.get('/', read)
 router.get('/carousel', carousel)
-
 router.get('/:id', readOne) 
 router.put('/:u_id', update)
 router.delete('/:id', destroy)

@@ -14,7 +14,9 @@ export default async (req, res, next) => {
     if (req.query.city) {
       objetoDeBusqueda.city = new RegExp('^' + req.query.city, 'i') 
     }
-
+   /*  if (req.query.country) {
+      objetoDeBusqueda.country = new RegExp('^' + req.query.country, 'i') 
+    } */
     if (req.query.sort) {
       objetoDeOrdenamiento.city = req.query.sort; // se debe colocar el campo por que el queremos ordenar
     }

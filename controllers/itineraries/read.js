@@ -3,19 +3,14 @@ import Itinerary from "../../models/Itinerary.js";
 export default async (req, res, next) => {
   try {
     let objetoDeBusqueda = {}
-    let objetoDeOrdenamiento = {}
-    if (req.query.name) {
-      objetoDeBusqueda.name = new RegExp(req.query.name, 'i')
-    }
 
-    if (req.query.sort) {
-      objetoDeOrdenamiento.sort = req.query.sort;
+    if (req.query.city_id) {
+        objetoDeBusqueda.city_id = req.query.city_id 
     }
 
     let allItineraries = await Itinerary
       .find(objetoDeBusqueda, 'name price duration photo ')
       .populate('city_id', 'country city population -_id')
-      .sort(objetoDeOrdenamiento)
     if (allItineraries.length > 0) {
       return res.status(200).json({
         success: true,
