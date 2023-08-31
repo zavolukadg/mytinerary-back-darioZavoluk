@@ -130,14 +130,12 @@ const itineraries = [{
     tags: ['#culture', '#peace'],
     photo: 'https://i.im.ge/2022/08/31/OERMl1.salahCitadelCairoCity.png'
 }]
-
-
 async function createItineraries(arrayItineraries){
     try {
         await connect(process.env.LINK_DB)
         for(let itinerary of arrayItineraries){
             let city = await City.findOne({city:itinerary.city_id})
-            let city_id = await city._id    //Aca recibe un objeto que corresponde con el id de la ciudad
+            let city_id = city._id    //Aca recibe un objeto que corresponde con el id de la ciudad
             itinerary.city_id = city_id
             await Itinerary.create(itinerary)
         }

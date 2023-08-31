@@ -6,14 +6,15 @@ import update from '../controllers/cities/update.js'
 import destroy from '../controllers/cities/destroy.js'
 import carousel from '../controllers/cities/carousel.js'
 
-let router = express.Router();
+let cityRouter = express.Router();
 
-router.post('/', create)
-router.get('/', read)
-router.get('/carousel', carousel)
-router.get('/:id', readOne) 
-router.put('/:u_id', update)
-router.delete('/:id', destroy)
+cityRouter.post('/', create)
+cityRouter.get('/', read)
+cityRouter.get('/carousel', carousel)
+cityRouter.get('/:id', readOne) 
+cityRouter.put('/:u_id', update)
+cityRouter.delete('/:id', destroy)
 ///los endpoints que lleven params van siempre al final para que no me detecte la ruta como params
+//El nombre que utilizo en el enrutador tiene que ser el mismo que el endpoint
 
-export default router;
+export default cityRouter;

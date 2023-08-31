@@ -130,7 +130,7 @@ async function createCities(arrayCities){
         await connect(process.env.LINK_DB)
         for(let city of arrayCities){
             let user = await User.findOne({mail:city.admin_id})
-            let admin_id = await user._id
+            let admin_id = user._id
             city.admin_id = admin_id
             await City.create(city)
         }

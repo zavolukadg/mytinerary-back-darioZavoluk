@@ -5,12 +5,12 @@ import readOne from '../controllers/itineraries/readOne.js'
 import update from '../controllers/itineraries/update.js'
 import destroy from '../controllers/itineraries/destroy.js'
 
-let router = express.Router();
+let itineraryRouter = express.Router();
 
-router.post('/', create)
-router.get('/', read)
-router.get('/:id', readOne) 
-router.put('/:u_id', update)
-router.delete('/:id', destroy)
+itineraryRouter.post('/', create)
+itineraryRouter.get('/', read)
+itineraryRouter.get('/:id', readOne) 
+itineraryRouter.put('/:u_id', update)
+itineraryRouter.delete('/:id', destroy)
 
-export default router;
+export default itineraryRouter;

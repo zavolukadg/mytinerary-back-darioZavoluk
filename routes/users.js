@@ -6,7 +6,7 @@ import readOne from '../controllers/users/readOne.js'
 import update from '../controllers/users/update.js'
 import destroy from '../controllers/users/destroy.js'
 
-let router = express.Router();
+let userRouter = express.Router();
 
 //Metodos http para crear POST, para leer es GET, para actualizar es PUT/PATCH y para eliminar es delete.
 //Cada vez que se llama a un POST se crearan recursos
@@ -22,10 +22,10 @@ let router = express.Router();
   res.send('respond with all users');
 }); */
 
-router.post('/', create)
-router.get('/', read)
-router.get('/:id', readOne) //El nombre del parametro puede ser cualquier pero en el enrutador y controlador deben ser iguales
-router.put('/:u_id', update)
-router.delete('/:id', destroy)
+userRouter.post('/', create)
+userRouter.get('/', read)
+userRouter.get('/:id', readOne) //El nombre del parametro puede ser cualquier pero en el enrutador y controlador deben ser iguales
+userRouter.put('/:u_id', update)
+userRouter.delete('/:id', destroy)
 
-export default router;
+export default userRouter;

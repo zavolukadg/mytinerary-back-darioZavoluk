@@ -9,7 +9,7 @@ export default async (req, res, next) => {
     }
 
     let allItineraries = await Itinerary
-      .find(objetoDeBusqueda, 'name price duration photo ')
+      .find(objetoDeBusqueda, 'name price duration tags photo _id')
       .populate('city_id', 'country city population -_id')
     if (allItineraries.length > 0) {
       return res.status(200).json({
