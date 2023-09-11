@@ -5,6 +5,8 @@ import read from '../controllers/users/read.js'
 import readOne from '../controllers/users/readOne.js'
 import update from '../controllers/users/update.js'
 import destroy from '../controllers/users/destroy.js'
+import passport from '../middlewares/passport.js';
+import updatePassHash from '../middlewares/updatePassHash.js';
 
 let userRouter = express.Router();
 
@@ -25,7 +27,7 @@ let userRouter = express.Router();
 userRouter.post('/', create)
 userRouter.get('/', read)
 userRouter.get('/:id', readOne) //El nombre del parametro puede ser cualquier pero en el enrutador y controlador deben ser iguales
-userRouter.put('/:u_id', update)
+userRouter.put('/',passport.authenticate('jwt',{session:false}), updatePassHash , update)
 userRouter.delete('/:id', destroy)
 
 export default userRouter;
